@@ -4,12 +4,21 @@ import argparse
 import numpy as np
 
 import torch
+# device = torch.device("cpu")
+
 import torch.nn.functional as F
 import torch.optim as optim
 
 from utils import load_data, accuracy,load_pokec
 from models.FairGNN import FairGNN
 
+# /Users/beep/Desktop/FairGNN/src/train_fairGNN.py
+# map_location = torch.load('/Users/beep/Desktop/FairGNN/src/models/FairGNN.py', map_location=torch.device('cpu'))
+
+# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# cuda1 = torch.device('cuda:1')
+# >>> torch.randn((2,3), device=cuda1)
+device = torch.device('cpu')
 # Training settings
 parser = argparse.ArgumentParser()
 parser.add_argument('--no-cuda', action='store_true', default=False,
@@ -104,8 +113,12 @@ print(len(idx_test))
 #%%
 import dgl
 from utils import feature_norm
-G = dgl.DGLGraph()
-G.from_scipy_sparse_matrix(adj)
+G = dgl.DGLGraph() #OG code
+# G = dgl.graph() #try on my own
+# dgl.from_scipy
+G.from_scipy_sparse_matrix(adj) 
+# dgl.from_scipy(adj)
+
 if dataset == 'nba':
     features = feature_norm(features)
 

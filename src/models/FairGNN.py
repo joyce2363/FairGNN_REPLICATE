@@ -1,7 +1,11 @@
+
+import torch
+# torch.load('/Users/beep/Desktop/FairGNN/src/models/GCN.py', map_location=torch.device('cpu')) #newly added
+# map_location=torch.device('cpu') #newly added
 import torch.nn as nn
+# import GCN,GCN_Body
 from models.GCN import GCN,GCN_Body
 from models.GAT import GAT,GAT_body
-import torch
 
 def get_model(nfeat, args):
     if args.model == "GCN":

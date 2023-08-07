@@ -5,6 +5,8 @@ import torch
 import os
 import pandas as pd
 import dgl
+device = torch.device('cpu')
+
 def encode_onehot(labels):
     classes = set(labels)
     classes_dict = {c: np.identity(len(classes))[i, :] for i, c in
